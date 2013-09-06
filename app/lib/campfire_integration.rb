@@ -12,9 +12,11 @@ module CampfireIntegration
   end
 
   def self.handle_message(campfire_message)
-    puts campfire_message
-    puts campfire_message[:body]
-    Vote.add(plan: campfire_message[:body], user_name: campfire_message[:user][:name])
+    if campfire_message[:type] == "TextMessage"
+      puts campfire_message
+      puts campfire_message[:body]
+      Vote.add(plan: campfire_message[:body], user_name: campfire_message[:user][:name])
+    end
   end
 
 end
