@@ -46,6 +46,8 @@ end
 gem 'redis'
 gem 'puma'
 gem 'hashie'
+gem 'unicorn'
+gem 'foreman'
 
 group :test do
   gem 'guard-minitest'
