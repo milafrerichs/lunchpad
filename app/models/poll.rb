@@ -1,21 +1,35 @@
 class Poll
 
+  attr_accessor :votes
+
+  def initialize(opts)
+    self.votes = opts[:votes]
+  end
+
+  def self.current
+    votes = Vote.where("DATE(created_at) = ?", Date.today).to_a
+    Poll.new(votes: votes)
+  end
+
   def venues
-    [
-      { name: 'CC', votes:
-        [
-          { user: 'Micha', time: '12:15' },
-          { user: 'Heiko', time: '12:15' },
-          { user: 'Yasmin', time: '12:30' }
-        ]
-      },
-      { name: 'Royals & Rice', votes:
-        [
-          { user: 'Sam', time: '12:30' },
-          { user: 'Lars', time: '12:30' }
-        ]
-      }
-    ]
+    votes.group_by(&:venue).map{|venue, votes| VenueWithVotes.new(venue, votes) }
+  end
+
+  def venue(venue_name)
+    venues.find{|venue_with_votes| venue_with_votes.venue.name == venue_name}
+  end
+
+  class VenueWithVotes
+    attr_accessor :venue, :votes
+
+    def initialize(venue, votes)
+      self.venue = venue
+      self.votes = votes
+    end
+
+    def name
+      venue.name
+    end
   end
 
 end

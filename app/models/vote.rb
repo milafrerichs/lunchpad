@@ -26,4 +26,8 @@ class Vote < ActiveRecord::Base
   def self.extract_venue_name(plan)
     plan.split("um").first.strip
   end
+
+  def user_name
+    user.name
+  end
 end
