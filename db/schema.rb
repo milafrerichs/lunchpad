@@ -35,5 +35,4 @@ ActiveRecord::Schema.define(version: 20130906151135) do
 
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
   add_index "votes", ["venue_id"], name: "index_votes_on_venue_id"
-
 end

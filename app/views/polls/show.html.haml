@@ -1,0 +1,15 @@
+%h2.subheader Current Poll
+
+- @poll.each do |venue|
+  .panel.row{id: venue.name}
+    .panel.callout.large-4.columns
+      = venue.name
+    .panel.large-4.columns
+      +
+      = venue.votes.count
+    .times.panel.large-4.columns
+      - venue.votes.each do |vote|
+        %div.option.label
+          = vote.time
+          / = link_to vote_up
+
