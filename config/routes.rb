@@ -1,4 +1,10 @@
 Lunchpad::Application.routes.draw do
+  resources :polls, only: [:show]
+
+  resources :votes, only: [:new, :create]
+
+  root to: 'votes#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
