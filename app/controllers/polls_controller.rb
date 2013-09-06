@@ -1,4 +1,4 @@
-class PollsController < ActionController::Base
+class PollsController < ApplicationController
   before_action :load_poll, only: :show
 
   def load_poll
