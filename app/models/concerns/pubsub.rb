@@ -3,7 +3,7 @@ module Pubsub
 
   module ClassMethods
     def publish(event, data)
-      redis.publish event, data
+      redis.publish event, data.to_json
     end
 
     def redis
