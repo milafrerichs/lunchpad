@@ -22,8 +22,14 @@
   = csrf_meta_tag
 
 %body
+  %nav#header.top-bar
+    = image_tag 'poll_counter.jpg'
+    %h1 Lunch Pad
+    %h2.subheading
+      Vote where to eat for lunch today
 
-  = yield
+  #content
+    = yield
 
   = javascript_include_tag "application"
 
