@@ -15,7 +15,7 @@ module CampfireIntegration
     if campfire_message[:type] == "TextMessage"
       puts campfire_message
       puts campfire_message[:body]
-      Vote.add(plan: campfire_message[:body], user_name: campfire_message[:user][:name])
+      Vote.add_or_update(plan: campfire_message[:body], user_name: campfire_message[:user][:name])
     end
   end
 

@@ -25,6 +25,11 @@ class Poll
     venues.find{|venue_with_votes| venue_with_votes.venue.name == venue_name}
   end
 
+  def vote_of(user_name)
+    binding.pry if votes.any?{|vote| vote.user.nil? }
+    votes.find{|vote|vote.user.name == user_name}
+  end
+
   class VenueWithVotes
     attr_accessor :venue, :votes
 

@@ -2,15 +2,28 @@ require 'test_helper'
 
 describe Vote do
 
-  it '.add extracts the information' do
-    vote = Vote.add(plan: 'RR um 12:30', user_name: 'Lars')
+  describe '.add_or_update extracts the information' do
 
-    vote.persisted?.must_equal true
-    vote.user.name.must_equal 'Lars'
+    it 'creates a vote if the user has not voted today' do
+      vote = Vote.add_or_update(plan: 'RR um 12:30', user_name: 'Lars')
 
-    today = Date.today
-    vote.preferred_lunch_time.must_equal DateTime.new(today.year, today.month, today.day, 12, 30)
-    vote.venue.name.must_equal 'RR'
+      vote.persisted?.must_equal true
+      vote.user.name.must_equal 'Lars'
+
+      today = Date.today
+      vote.preferred_lunch_time.must_equal DateTime.new(today.year, today.month, today.day, 12, 30)
+      vote.venue.name.must_equal 'RR'
+    end
+
+    it 'updates the users vote ' do
+      Vote.delete_all
+      Vote.add_or_update(plan: 'RR um 12:30', user_name: 'Lars')
+      vote = Vote.add_or_update(plan: 'CC um 12:30', user_name: 'Lars')
+      vote.reload
+
+      Vote.count.must_equal 1
+      vote.venue.name.must_equal 'CC'
+    end
   end
 
   describe '.extract_time' do
