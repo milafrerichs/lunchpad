@@ -10,18 +10,20 @@ class PollsController < ApplicationController
   end
 
   def show
+
   end
 
   def stream
-    response.headers['Content-Type'] = 'text/event-stream'
-    event_source = EventSource.new(response.stream)
+    begin
+      response.headers['Content-Type'] = 'text/event-stream'
+      event_source = EventSource.new(response.stream)
 
-    5.times do
-      event_source.publish :update, Poll.new.venues
+      Poll.on_event(:update) do |event, poll|
+        event_source.publish event, poll
+      end
 
-      sleep 2
+    ensure
+      event_source.close
     end
-
-    event_source.close
   end
 end

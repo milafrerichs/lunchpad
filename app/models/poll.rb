@@ -1,4 +1,10 @@
 class Poll
+  include Pubsub
+
+  def self.update
+    publish 'update', Poll.current
+  end
+
 
   attr_accessor :votes
 
