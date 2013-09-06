@@ -6,6 +6,7 @@ $ ->
       console.log('opened stream')
     source.onmessage = (e) ->
       console.log {event: e}
+      window.location.reload()
     source.onerror = (e) ->
       console.log {error: e}
     console.log(source: source)
