@@ -21,7 +21,8 @@ class PollsController < ApplicationController
       Poll.on_event(:update) do |event, poll|
         event_source.publish event, poll
       end
-
+    rescue
+      nil
     ensure
       event_source.close
     end
