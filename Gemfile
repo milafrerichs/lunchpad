@@ -15,6 +15,9 @@ gem 'lolcommits'
 gem 'compass-rails' # you need this or you get an err
 gem 'zurb-foundation'
 
+gem 'tinder'
+gem 'crack'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
