@@ -28,5 +28,5 @@
 
 # amount of unicorn workers to spin up, doesn't apply to job workers AFAIK
 # set to number of cores your CPU(s) have for max response performance
-worker_processes 6
-timeout 600
+worker_processes 10
+timeout 15
