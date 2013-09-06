@@ -1,4 +1,4 @@
-class PollsController < ActionController::Base
+class PollsController < ApplicationController
   def show
 
   end
