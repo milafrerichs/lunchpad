@@ -40,6 +40,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'redis'
 gem 'puma'
 gem 'hashie'
 
