@@ -2,14 +2,18 @@
 
 - @poll.venues.each do |venue|
   .panel.row{id: venue.name}
-    .panel.callout.large-4.columns
+    .panel.callout.large-3.columns
       = venue.name
-    .panel.large-4.columns
+    .panel.large-3.columns
       +
       = venue.votes.count
-    .times.panel.large-4.columns
+    .panel.large-3.columns
+      %ul
+        - venue.votes.each do |vote|
+          %li= vote.user
+    .times.panel.large-3.columns
       - venue.votes.each do |vote|
         %div.option.label
-          = vote.preferred_lunch_time
+          = l vote.preferred_lunch_time, format: :short
           / = link_to vote_up
 
