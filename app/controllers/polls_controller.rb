@@ -6,7 +6,7 @@ class PollsController < ApplicationController
   before_action :load_poll, only: :show
 
   def load_poll
-    @poll = Poll.new.venues
+    @poll = Poll.current
   end
 
   def show
