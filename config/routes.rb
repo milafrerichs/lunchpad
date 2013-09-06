@@ -1,5 +1,9 @@
 Lunchpad::Application.routes.draw do
-  resources :polls, only: [:show]
+  resources :polls, only: [:show] do
+    member do
+      get 'stream'
+    end
+  end
 
   resources :votes, only: [:new, :create]
 
