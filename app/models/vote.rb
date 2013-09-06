@@ -1,6 +1,7 @@
 class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :venue
+  after_save :update_poll
 
   def self.add(opts)
     plan = opts[:plan]
@@ -29,5 +30,9 @@ class Vote < ActiveRecord::Base
 
   def user_name
     user.name
+  end
+
+  def update_poll
+    Poll.update
   end
 end
